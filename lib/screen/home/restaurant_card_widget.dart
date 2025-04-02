@@ -19,7 +19,7 @@ class RestaurantCard extends StatelessWidget {
       onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(
-          vertical: 8,
+          vertical: 2,
           horizontal: 16,
         ),
         child: Row(

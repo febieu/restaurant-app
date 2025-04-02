@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
+import 'package:restaurant_app/provider/detail/restaurant_detail_provider.dart';
 import 'package:restaurant_app/provider/home/restaurant_list_provider.dart';
 import 'package:restaurant_app/screen/detail/detail_screen.dart';
 import 'package:restaurant_app/screen/home/home_screen.dart';
@@ -17,8 +18,13 @@ void main() {
           ChangeNotifierProvider(
               create: (context) => RestaurantListProvider(
                 context.read<ApiServices>(),
-              )
-          )
+              ),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => RestaurantDetailProvider(
+              context.read<ApiServices>(),
+            ),
+          ),
         ],
         child: const MyApp()
     ),
@@ -28,7 +34,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -39,7 +44,9 @@ class MyApp extends StatelessWidget {
       initialRoute: NavigationRoute.mainRoute.name,
       routes: {
         NavigationRoute.mainRoute.name: (context) => const HomeScreen(),
-        NavigationRoute.detailRoute.name: (context) => DetailScreen(),
+        NavigationRoute.detailRoute.name: (context) => DetailScreen(
+          id: ModalRoute.of(context)?.settings.arguments as String,
+        ),
       }
     );
   }
