@@ -11,8 +11,10 @@ class RestaurantDetailProvider extends ChangeNotifier {
       );
 
   RestaurantDetailResultState _resultState = RestaurantDetailNoneState();
+  bool _isLoading = false;
 
   RestaurantDetailResultState get resultState => _resultState;
+  bool get isLoading => _isLoading;
 
   Future<void> fetchRestaurantDetail(String id) async {
     try {
@@ -20,7 +22,7 @@ class RestaurantDetailProvider extends ChangeNotifier {
       notifyListeners();
 
       final result = await _apiServices.getRestaurantDetail(id);
-      print('API Response: ${result}');
+      // print('API Response: ${result}');
 
       if (result.error) {
         _resultState = RestaurantDetailErrorState(result.message);
@@ -34,4 +36,20 @@ class RestaurantDetailProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  Future<void> postReview(String id, String name, String review) async {
+    _isLoading = true;
+    notifyListeners();
+
+    try {
+      await _apiServices.postReview(id, name, review);
+      await fetchRestaurantDetail(id);
+    } catch (e) {
+      throw Exception('Failed to post a review');
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+   }
+
 }

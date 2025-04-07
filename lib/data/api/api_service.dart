@@ -21,6 +21,10 @@ class ApiServices {
     return "$_baseUrl/images/small/$pictureId";
   }
 
+  static String getLargeImage(pictureId) {
+    return "$_baseUrl/images/large/$pictureId";
+  }
+
   Future<RestaurantDetailResponse> getRestaurantDetail(String id) async {
     final response = await http.get(Uri.parse("$_baseUrl/detail/$id"));
 
@@ -31,5 +35,19 @@ class ApiServices {
     }
   }
 
+  Future<void> postReview(String id, String name, String review) async {
+    final response = await http.post(Uri.parse("$_baseUrl/review"),
+    headers: {'Content-Type': 'application/json'},
+    body: jsonEncode({
+      'id': id,
+      'name': name,
+      'review': review,
+    }),
+    );
+
+    if (response.statusCode >= 400) {
+      throw Exception('Failed to post a review');
+    }
+  }
 
 }

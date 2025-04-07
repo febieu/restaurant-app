@@ -39,9 +39,10 @@ class _DetailScreenState extends State<DetailScreen> {
             ),
             RestaurantDetailLoadedState(data: var restaurant) =>
               BodyOfDetailScreenWidget(
-                  restaurantDetail: restaurant,
-                  categories: restaurant.categories,
-                  menus: restaurant.menus,
+                restaurantDetail: restaurant,
+                categories: restaurant.categories,
+                menus: restaurant.menus,
+                reviews: restaurant.customerReviews,
               ),
             RestaurantDetailErrorState(error: var message) => Center(
               child: Text(message),
