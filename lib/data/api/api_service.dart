@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:restaurant_app/data/model/restaurant_search_response.dart';
 
 import '../model/restaurant_detail_response.dart';
 import '../model/restaurant_list_response.dart';
@@ -47,6 +48,16 @@ class ApiServices {
 
     if (response.statusCode >= 400) {
       throw Exception('Failed to post a review');
+    }
+  }
+
+  Future<RestaurantSearchResponse> getSearchRestaurant(String query) async {
+    final response = await http.get(Uri.parse("$_baseUrl/search?q=$query"));
+
+    if (response.statusCode == 200) {
+      return RestaurantSearchResponse.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to load data from Restaurant Search');
     }
   }
 

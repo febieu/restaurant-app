@@ -3,8 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/provider/detail/restaurant_detail_provider.dart';
 import 'package:restaurant_app/provider/home/restaurant_list_provider.dart';
+import 'package:restaurant_app/provider/search/restaurant_search_provider.dart';
 import 'package:restaurant_app/screen/detail/detail_screen.dart';
 import 'package:restaurant_app/screen/home/home_screen.dart';
+import 'package:restaurant_app/screen/search/search_screen.dart';
 import 'package:restaurant_app/static/navigation_route.dart';
 import 'package:restaurant_app/style/theme/restaurant_theme.dart';
 
@@ -22,6 +24,11 @@ void main() {
           ),
           ChangeNotifierProvider(
             create: (context) => RestaurantDetailProvider(
+              context.read<ApiServices>(),
+            ),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => RestaurantSearchProvider(
               context.read<ApiServices>(),
             ),
           ),
@@ -47,6 +54,7 @@ class MyApp extends StatelessWidget {
         NavigationRoute.detailRoute.name: (context) => DetailScreen(
           id: ModalRoute.of(context)?.settings.arguments as String,
         ),
+        NavigationRoute.searchRoute.name: (context) => const SearchScreen(),
       }
     );
   }

@@ -28,54 +28,66 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold (
-      body: Consumer<RestaurantListProvider>(
-        builder: (context, value, child) {
-          return switch (value.resultState) {
-            RestaurantListLoadingState() => const Center(
-              child: CircularProgressIndicator(),
-            ),
-          RestaurantListLoadedState(data: var restaurantList) => ListView.separated(
-              separatorBuilder: (context, index) => const SizedBox.square(dimension: 8),
-              itemCount: restaurantList.length + 1,
-              itemBuilder: (context, index) {
-                if(index == 0) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Restaurant",
-                            style: Theme.of(context).textTheme.headlineMedium,
-                          ),
-                          Text(
-                            "Recommendation restaurant for you!",
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                        ]
-                    ),
-                  );
-                }
-
-                final restaurant = restaurantList[index - 1];
-                return RestaurantCard(
-                  restaurant: restaurant,
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      NavigationRoute.detailRoute.name,
-                      arguments: restaurant.id,
+      appBar: AppBar(
+        title: const Text('Taste Voyage'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context,
+                NavigationRoute.searchRoute.name,
+              );
+            },
+            icon: const Icon(Icons.search_rounded),
+          ),
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Consumer<RestaurantListProvider>(
+          builder: (context, value, child) {
+            return switch (value.resultState) {
+              RestaurantListLoadingState() => const Center(
+                child: CircularProgressIndicator(),
+              ),
+              RestaurantListLoadedState(data: var restaurantList) => ListView.separated(
+                separatorBuilder: (context, index) => const SizedBox.square(dimension: 8),
+                itemCount: restaurantList.length + 1,
+                itemBuilder: (context, index) {
+                  if(index == 0) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Hi, Welcome Back!",
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        Text(
+                          "Find your perfect restaurant for eat today!",
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ),
+                      ],
                     );
                   }
-                );
-              }
-          ),
-          RestaurantListErrorState(error: var message) => Center(
-            child: Text(message),
-          ),
-            _ => const SizedBox(),
-          };
-        }
+                  final restaurant = restaurantList[index - 1];
+                  return RestaurantCard(
+                      restaurant: restaurant,
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          NavigationRoute.detailRoute.name,
+                          arguments: restaurant.id,
+                        );
+                      }
+                  );
+                },
+              ),
+              RestaurantListErrorState(error: var message) => Center(
+                child: Text(message),
+              ),
+              _ => const SizedBox(),
+            };
+          },
+        ),
       ),
     );
   }

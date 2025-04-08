@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
 
-import '../../data/model/restaurant.dart';
+import '../../data/model/restaurant_list.dart';
 
 class RestaurantCard extends StatelessWidget {
   final Restaurant restaurant;
@@ -20,7 +20,7 @@ class RestaurantCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(
           vertical: 2,
-          horizontal: 16,
+          horizontal: 8,
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
