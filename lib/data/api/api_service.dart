@@ -1,9 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:restaurant_app/data/model/restaurant_detail_response.dart';
+import 'package:restaurant_app/data/model/restaurant_list_response.dart';
 import 'package:restaurant_app/data/model/restaurant_search_response.dart';
-
-import '../model/restaurant_detail_response.dart';
-import '../model/restaurant_list_response.dart';
 
 class ApiServices {
   static const String _baseUrl = "https://restaurant-api.dicoding.dev";
@@ -60,5 +59,4 @@ class ApiServices {
       throw Exception('Failed to load data from Restaurant Search');
     }
   }
-
 }

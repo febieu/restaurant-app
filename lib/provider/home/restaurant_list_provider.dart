@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
-
-import '../../static/restaurant_list_result_state.dart';
+import 'package:restaurant_app/static/restaurant_list_result_state.dart';
 
 class RestaurantListProvider extends ChangeNotifier {
   final ApiServices _apiServices;

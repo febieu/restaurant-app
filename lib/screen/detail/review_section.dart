@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../../provider/detail/restaurant_detail_provider.dart';
+import 'package:restaurant_app/provider/detail/restaurant_detail_provider.dart';
 
 class ReviewSection extends StatefulWidget {
   final String restaurantId;

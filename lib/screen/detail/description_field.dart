@@ -36,9 +36,6 @@ class _DescriptionTextState extends State<DescriptionText> {
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
               color: Colors.deepOrange,
             ),
-            // style: TextStyle(
-            //   color: Colors.orange,
-            // ),
           ),
         ),
       ],

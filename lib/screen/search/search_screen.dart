@@ -6,13 +6,8 @@ import 'package:restaurant_app/static/navigation_route.dart';
 import 'package:restaurant_app/static/restaurant_search_result_state.dart';
 
 class SearchScreen extends StatefulWidget {
-  // final String query;
-  // final Restaurant restaurant;
-
   const SearchScreen({
     super.key,
-    // required this.query,
-    // required this.restaurant,
   });
 
   @override
@@ -26,8 +21,8 @@ class _SearchScreen extends State<SearchScreen> {
     super.initState();
     Future.microtask(() {
       context
-          .read<RestaurantSearchProvider>()
-          .fetchRestaurantSearch(query);
+        .read<RestaurantSearchProvider>()
+        .fetchRestaurantSearch(query);
     });
   }
 
@@ -97,21 +92,6 @@ class _SearchScreen extends State<SearchScreen> {
                             },
                           ),
                         );
-                        // return ListTile(
-                        //   leading: Image.network(
-                        //     ApiServices.getImageUrl(restaurant.pictureId),
-                        //     fit: BoxFit.cover,
-                        //   ),
-                        //   title: Text(restaurant.name),
-                        //   subtitle: Text('Rating: ${restaurant.rating}'),
-                        //   onTap: () {
-                        //     Navigator.pushNamed(
-                        //       context,
-                        //       NavigationRoute.detailRoute.name,
-                        //       arguments: restaurant.id,
-                        //     );
-                        //   },
-                        // );
                       }
                     ),
                   };

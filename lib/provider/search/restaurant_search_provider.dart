@@ -5,7 +5,6 @@ import 'package:restaurant_app/static/restaurant_search_result_state.dart';
 class RestaurantSearchProvider extends ChangeNotifier {
   final ApiServices _apiServices;
 
-
   RestaurantSearchProvider(
       this._apiServices,
   );
@@ -54,5 +53,4 @@ class RestaurantSearchProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
-
 }

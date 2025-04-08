@@ -86,11 +86,6 @@ class RestaurantDetail {
       city: json['city'],
       address: json['address'],
       pictureId: json['pictureId'],
-      // categories : (json['categories'] as List)
-      //   .map((item) => Category.fromJson(item))
-      //   .toList(),
-      // menus: json['menus'],
-      // customerReviews: json['customerReviews'],
       rating: (json['rating'] as num).toDouble(),
       categories: (json['categories'] as List)
           .map((e) => Category.fromJson(e))

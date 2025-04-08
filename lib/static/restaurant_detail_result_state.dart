@@ -5,6 +5,7 @@ sealed class RestaurantDetailResultState {}
 class RestaurantDetailNoneState extends RestaurantDetailResultState {}
 
 class RestaurantDetailLoadingState extends RestaurantDetailResultState {}
+
 class RestaurantDetailErrorState extends RestaurantDetailResultState {
   final String error;
 

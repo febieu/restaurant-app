@@ -18,5 +18,4 @@ class RestaurantDetailResponse {
         restaurant: RestaurantDetail.fromJson(json['restaurant']),
     );
   }
-
 }
