@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/static/restaurant_search_result_state.dart';
@@ -29,6 +31,9 @@ class RestaurantSearchProvider extends ChangeNotifier {
         _resultState = RestaurantSearchLoadedState(result.restaurants);
         notifyListeners();
       }
+    } on SocketException {
+      _resultState = RestaurantSearchErrorState('Please check your connection.');
+      notifyListeners();
     } on Exception catch (e) {
       _resultState = RestaurantSearchErrorState(e.toString());
       notifyListeners();
@@ -48,6 +53,9 @@ class RestaurantSearchProvider extends ChangeNotifier {
         _resultState = RestaurantSearchLoadedState(result.restaurants);
         notifyListeners();
       }
+    } on SocketException {
+      _resultState = RestaurantSearchErrorState('Please check your connection.');
+      notifyListeners();
     } on Exception catch (e) {
       _resultState = RestaurantSearchErrorState(e.toString());
       notifyListeners();

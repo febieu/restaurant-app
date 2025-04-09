@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/static/restaurant_list_result_state.dart';
@@ -26,6 +28,9 @@ class RestaurantListProvider extends ChangeNotifier {
         _resultState = RestaurantListLoadedState(result.restaurants);
         notifyListeners();
       }
+    } on SocketException {
+      _resultState = RestaurantListErrorState('Please check your connection.');
+      notifyListeners();
     } on Exception catch (e) {
       _resultState = RestaurantListErrorState(e.toString());
       notifyListeners();
