@@ -59,11 +59,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Text(
                           "Hi, Welcome Back!",
-                          style: Theme.of(context).textTheme.titleLarge,
+                          style: Theme.of(context).textTheme.titleMedium,
                         ),
                         Text(
                           "Find your perfect restaurant for eat today!",
-                          style: Theme.of(context).textTheme.titleSmall,
+                          style: Theme.of(context).textTheme.labelMedium,
                         ),
                       ],
                     );

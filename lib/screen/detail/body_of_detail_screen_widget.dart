@@ -73,11 +73,20 @@ class BodyOfDetailScreenWidget extends StatelessWidget {
                   ],
                 ),
                 const SizedBox.square(dimension: 4),
-                Text(
-                  ('${restaurantDetail.city}, ${restaurantDetail.address}'),
-                  style: Theme.of(context).textTheme.bodySmall,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Icon(
+                      Icons.location_on,
+                      size: 18,
+                    ),
+                    Text(
+                      ('${restaurantDetail.city}, ${restaurantDetail.address}'),
+                      style: Theme.of(context).textTheme.bodyMedium,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                  ],
                 ),
                 const SizedBox.square(dimension: 8),
                 SizedBox(
@@ -97,7 +106,7 @@ class BodyOfDetailScreenWidget extends StatelessWidget {
                             padding: const EdgeInsets.all(8),
                             child: Text(
                               category.name,
-                              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              style: Theme.of(context).textTheme.labelSmall?.copyWith(
                                 color: Colors.black54
                               ),
                             ),
@@ -110,17 +119,17 @@ class BodyOfDetailScreenWidget extends StatelessWidget {
                 const SizedBox.square(dimension: 8),
                 Text(
                   "Deskripsi:",
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme.of(context).textTheme.labelLarge,
                 ),
                 DescriptionText(text: restaurantDetail.description),
                 const SizedBox.square(dimension: 12),
                 Text(
                   'Menu:',
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme.of(context).textTheme.labelLarge,
                 ),
                 Text(
                   'Foods:',
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: Theme.of(context).textTheme.labelSmall,
                 ),
                 const SizedBox.square(dimension: 4),
                 Text(
@@ -130,7 +139,7 @@ class BodyOfDetailScreenWidget extends StatelessWidget {
                 const SizedBox.square(dimension: 8),
                 Text(
                   'Drinks:',
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: Theme.of(context).textTheme.labelSmall,
                 ),
                 const SizedBox.square(dimension: 4),
                 Text(
@@ -143,7 +152,7 @@ class BodyOfDetailScreenWidget extends StatelessWidget {
                   children: [
                     Text(
                       "Review:",
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: Theme.of(context).textTheme.labelLarge,
                     ),
                     const Spacer(),
                     ElevatedButton(
@@ -162,7 +171,7 @@ class BodyOfDetailScreenWidget extends StatelessWidget {
                         ),
                       child: Text(
                         "Add Review",
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
                             color: Colors.deepOrange
                         ),
                       )
@@ -178,12 +187,19 @@ class BodyOfDetailScreenWidget extends StatelessWidget {
                     return ListTile(
                       contentPadding: EdgeInsets.zero,
                       dense: true,
+                      leading: CircleAvatar(
+                        radius: 16,
+                        backgroundImage: AssetImage('assets/images/profile-not-found.png'),
+                      ),
                       title: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
+                          Expanded(
+                            child: Text(
                             reviews[index].name,
-                            style: Theme.of(context).textTheme.bodySmall,
+                            style: Theme.of(context).textTheme.labelSmall,
+                            ),
                           ),
                           const Spacer(),
                           Text(
@@ -195,7 +211,7 @@ class BodyOfDetailScreenWidget extends StatelessWidget {
                         ],
                       ),
                       subtitle: Padding(
-                      padding: const EdgeInsets.all(4),
+                      padding: const EdgeInsets.only(top: 4),
                       child: Text(
                         reviews[index].review,
                         style: Theme.of(context).textTheme.bodySmall,

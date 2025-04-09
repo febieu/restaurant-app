@@ -20,7 +20,25 @@ class _ReviewSectionState extends State<ReviewSection> {
   bool _isLoading = false;
 
   void _submitReview() async {
+    final name = _nameController.text.trim();
+    final comment = _commentController.text.trim();
+
+    if (name.length < 4 || name.length > 15) {
+      Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Name must be between 4 and 15 characters')),
+      );
+      return;
+    }
+    if (comment.length > 150) {
+      Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Review must not be more than 150 characters')),
+      );
+      return;
+    }
     if (_nameController.text.isEmpty || _commentController.text.isEmpty) {
+      Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Please fill all fields')),
       );

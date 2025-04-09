@@ -6,20 +6,20 @@ class RestaurantTheme {
   static TextTheme get _textTheme {
     return TextTheme(
       displayLarge: RestaurantTextStyles.displayLarge,
-      // displayMedium: RestaurantTextStyles.displayMedium,
-      // displaySmall: RestaurantTextStyles.displaySmall,
-      // headlineLarge: RestaurantTextStyles.headlineLarge,
-      // headlineMedium: RestaurantTextStyles.headlineMedium,
+      displayMedium: RestaurantTextStyles.displayMedium,
+      displaySmall: RestaurantTextStyles.displaySmall,
+      headlineLarge: RestaurantTextStyles.headlineLarge,
+      headlineMedium: RestaurantTextStyles.headlineMedium,
       headlineSmall: RestaurantTextStyles.headlineSmall,
-      // titleLarge: RestaurantTextStyles.titleLarge,
+      titleLarge: RestaurantTextStyles.titleLarge,
       titleMedium: RestaurantTextStyles.titleMedium,
       titleSmall: RestaurantTextStyles.titleSmall,
       bodyLarge: RestaurantTextStyles.bodyLargeBold,
       bodyMedium: RestaurantTextStyles.bodyLargeMedium,
-      // bodySmall: RestaurantTextStyles.bodyLargeRegular,
+      bodySmall: RestaurantTextStyles.bodyLargeRegular,
       labelLarge: RestaurantTextStyles.labelLarge,
-      // labelMedium: RestaurantTextStyles.labelMedium,
-      // labelSmall: RestaurantTextStyles.labelSmall,
+      labelMedium: RestaurantTextStyles.labelMedium,
+      labelSmall: RestaurantTextStyles.labelSmall,
     );
   }
 

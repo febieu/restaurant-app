@@ -33,7 +33,7 @@ class _DescriptionTextState extends State<DescriptionText> {
           },
           child: Text(
             _isExpanded ? "Read Less" : "Read More",
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
               color: Colors.deepOrange,
             ),
           ),
