@@ -29,7 +29,20 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold (
       appBar: AppBar(
-        title: const Text('Taste Voyage'),
+        elevation: 10,
+        centerTitle: true,
+        leading: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Image.asset('assets/images/ic_launcher.png',
+            fit: BoxFit.contain,
+          ),
+        ),
+        title: const Text(
+            'Taste Voyage',
+          style: TextStyle(
+            color: Colors.deepOrange
+          ),
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -37,7 +50,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 NavigationRoute.searchRoute.name,
               );
             },
-            icon: const Icon(Icons.search_rounded),
+            icon: const Icon(
+              Icons.search_rounded,
+              color: Colors.black,
+            ),
           ),
         ],
       ),

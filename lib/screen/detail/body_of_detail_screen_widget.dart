@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/data/model/restaurant_detail.dart';
 import 'package:restaurant_app/screen/detail/description_field.dart';
+import 'package:restaurant_app/screen/detail/food_card.dart';
 import 'package:restaurant_app/screen/detail/review_section.dart';
 
 class BodyOfDetailScreenWidget extends StatelessWidget {
@@ -97,21 +98,8 @@ class BodyOfDetailScreenWidget extends StatelessWidget {
                     itemBuilder: (context, index) {
                       final category = categories[index];
                       return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 4),
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: Text(
-                              category.name,
-                              style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                                color: Colors.black54
-                              ),
-                            ),
-                          ),
-                        ),
+                          padding: const EdgeInsets.symmetric(horizontal: 4),
+                          child: FoodCard(foodName: category.name)
                       );
                     },
                   ),
@@ -132,9 +120,19 @@ class BodyOfDetailScreenWidget extends StatelessWidget {
                   style: Theme.of(context).textTheme.labelSmall,
                 ),
                 const SizedBox.square(dimension: 4),
-                Text(
-                  menus.checkFoods,
-                  style: Theme.of(context).textTheme.bodySmall,
+                SizedBox(
+                  height: 40,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: menus.foods.length,
+                    itemBuilder: (context, index) {
+                      final food = menus.foods[index];
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 4),
+                        child: FoodCard(foodName: food)
+                      );
+                    },
+                  ),
                 ),
                 const SizedBox.square(dimension: 8),
                 Text(
@@ -142,9 +140,19 @@ class BodyOfDetailScreenWidget extends StatelessWidget {
                   style: Theme.of(context).textTheme.labelSmall,
                 ),
                 const SizedBox.square(dimension: 4),
-                Text(
-                  menus.checkDrinks,
-                  style: Theme.of(context).textTheme.bodySmall,
+                SizedBox(
+                  height: 40,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: menus.drinks.length,
+                    itemBuilder: (context, index) {
+                      final drink = menus.drinks[index];
+                      return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 4),
+                          child: FoodCard(foodName: drink)
+                      );
+                    },
+                  ),
                 ),
                 const SizedBox.square(dimension: 12),
                 Row(
