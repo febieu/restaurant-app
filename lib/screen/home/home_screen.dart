@@ -52,7 +52,6 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             icon: const Icon(
               Icons.search_rounded,
-              color: Colors.black,
             ),
           ),
         ],

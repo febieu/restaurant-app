@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurant_app/provider/detail/description_provider.dart';
 
-class DescriptionText extends StatefulWidget {
+class DescriptionText extends StatelessWidget {
   final String text;
 
   const DescriptionText({super.key, required this.text});
 
   @override
-  _DescriptionTextState createState() => _DescriptionTextState();
-}
-
-class _DescriptionTextState extends State<DescriptionText> {
-  bool _isExpanded = false;
-
-  @override
   Widget build(BuildContext context) {
-    final int maxLines = _isExpanded ? 30 : 5;
+    final provider = context.watch<DescriptionProvider>();
+    final int maxLines = provider.isExpanded ? 30 : 5;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          widget.text,
+          text,
           maxLines: maxLines,
           overflow: TextOverflow.ellipsis,
           style: Theme.of(context).textTheme.bodySmall,
@@ -27,12 +24,10 @@ class _DescriptionTextState extends State<DescriptionText> {
         const SizedBox(height: 8),
         GestureDetector(
           onTap: () {
-            setState(() {
-              _isExpanded = !_isExpanded;
-            });
+            provider.toggleExpanded();
           },
           child: Text(
-            _isExpanded ? "Read Less" : "Read More",
+            provider.isExpanded ? "Read Less" : "Read More",
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
               color: Colors.deepOrange,
             ),
@@ -42,3 +37,4 @@ class _DescriptionTextState extends State<DescriptionText> {
     );
   }
 }
+

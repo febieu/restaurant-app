@@ -18,9 +18,7 @@ class FoodCard extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         child: Text(
           foodName,
-          style: Theme.of(context).textTheme.labelSmall?.copyWith(
-              color: Colors.black54
-          ),
+          style: Theme.of(context).textTheme.labelSmall
         ),
       ),
     );

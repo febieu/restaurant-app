@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/data/model/restaurant_detail.dart';
+import 'package:restaurant_app/provider/detail/description_provider.dart';
 import 'package:restaurant_app/screen/detail/description_field.dart';
 import 'package:restaurant_app/screen/detail/food_card.dart';
 import 'package:restaurant_app/screen/detail/review_section.dart';
@@ -109,7 +111,10 @@ class BodyOfDetailScreenWidget extends StatelessWidget {
                   "Deskripsi:",
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
-                DescriptionText(text: restaurantDetail.description),
+                ChangeNotifierProvider(
+                  create: (context) => DescriptionProvider(),
+                  child: DescriptionText(text: restaurantDetail.description),
+                ),
                 const SizedBox.square(dimension: 12),
                 Text(
                   'Menu:',
