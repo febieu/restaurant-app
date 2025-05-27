@@ -35,7 +35,7 @@ class _SearchScreen extends State<SearchScreen> {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -96,7 +96,7 @@ class _SearchScreen extends State<SearchScreen> {
                     ),
                   };
                 }
-              )
+              ),
             ),
           ],
         ),

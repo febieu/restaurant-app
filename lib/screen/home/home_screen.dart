@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: CircularProgressIndicator(),
               ),
               RestaurantListLoadedState(data: var restaurantList) => ListView.separated(
-                separatorBuilder: (context, index) => const SizedBox.square(dimension: 8),
+                separatorBuilder: (context, index) => const SizedBox.square(dimension: 0),
                 itemCount: restaurantList.length + 1,
                 itemBuilder: (context, index) {
                   if(index == 0) {
@@ -80,19 +80,21 @@ class _HomeScreenState extends State<HomeScreen> {
                           "Find your perfect restaurant for eat today!",
                           style: Theme.of(context).textTheme.labelMedium,
                         ),
+                        const SizedBox(height: 12,),
                       ],
                     );
                   }
                   final restaurant = restaurantList[index - 1];
+
                   return RestaurantCard(
-                      restaurant: restaurant,
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          NavigationRoute.detailRoute.name,
-                          arguments: restaurant.id,
-                        );
-                      }
+                    restaurant: restaurant,
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        NavigationRoute.detailRoute.name,
+                        arguments: restaurant.id,
+                      );
+                    },
                   );
                 },
               ),
