@@ -16,7 +16,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
   final List<Widget> _screens = [
     HomeScreen(),
     FavoriteScreen(),
-    // TODO: ADD SettingScreen(),
   ];
 
   @override
@@ -45,11 +44,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
             selectedIcon: Icon(Icons.favorite),
             icon: Icon(Icons.favorite_border_outlined),
             label: 'Favorite',
-          ),
-          NavigationDestination(
-            selectedIcon: Icon(Icons.settings),
-            icon: Icon(Icons.settings_outlined),
-            label: 'Setting',
           ),
         ],
       ),
