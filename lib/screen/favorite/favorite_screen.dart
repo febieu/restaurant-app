@@ -27,43 +27,43 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-            "Favorite Restaurant",
+          "Favorite Restaurant",
+          style: TextStyle(
+              color: Colors.deepOrange
+          ),
         ),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Consumer<LocalDatabaseProvider>(
-              builder: (context, provider, child) {
-                if (provider.restaurantList == null) {
-                  return Center(
-                    child: Text(
-                      'No favorites yet — start exploring and add some restaurants!'
-                    ),
-                  );
-                }
-
-                final restaurantList = provider.restaurantList!;
-                return ListView.builder(
-                  itemCount: restaurantList.length,
-                  itemBuilder: (context, index) {
-                    final restaurant = restaurantList[index];
-
-                    return RestaurantCard(
-                      restaurant: restaurant,
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          NavigationRoute.detailRoute.name,
-                        );
-                      },
-                    );
-                  }
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+        child: Consumer<LocalDatabaseProvider>(
+            builder: (context, provider, child) {
+              if (provider.restaurantList == null) {
+                return Center(
+                  child: Text(
+                    'No favorites yet — start exploring and add some restaurants!'
+                  ),
                 );
               }
-          ),
+
+              final restaurantList = provider.restaurantList!;
+              return ListView.builder(
+                itemCount: restaurantList.length,
+                itemBuilder: (context, index) {
+                  final restaurant = restaurantList[index];
+
+                  return RestaurantCard(
+                    restaurant: restaurant,
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        NavigationRoute.detailRoute.name,
+                      );
+                    },
+                  );
+                }
+              );
+            }
         ),
       ),
     );
