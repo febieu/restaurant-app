@@ -58,6 +58,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                       Navigator.pushNamed(
                         context,
                         NavigationRoute.detailRoute.name,
+                        arguments: restaurant.id,
                       );
                     },
                   );
