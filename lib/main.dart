@@ -6,6 +6,7 @@ import 'package:restaurant_app/provider/favorite/local_database_provider.dart';
 import 'package:restaurant_app/provider/home/restaurant_list_provider.dart';
 import 'package:restaurant_app/provider/navigation/navigation_provider.dart';
 import 'package:restaurant_app/provider/search/restaurant_search_provider.dart';
+import 'package:restaurant_app/provider/theme/theme_provider.dart';
 import 'package:restaurant_app/screen/detail/detail_screen.dart';
 import 'package:restaurant_app/screen/favorite/favorite_screen.dart';
 import 'package:restaurant_app/screen/home/home_screen.dart';
@@ -47,6 +48,9 @@ void main() {
           ),
           ChangeNotifierProvider(
             create: (context) => NavigationProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => ThemeProvider(),
           )
         ],
         child: const MyApp()
@@ -59,11 +63,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return MaterialApp(
       title: 'Restaurant App',
       theme: RestaurantTheme.lightTheme,
       darkTheme: RestaurantTheme.darkTheme,
-      themeMode: ThemeMode.system,
+      themeMode: themeProvider.themeMode,
+      debugShowCheckedModeBanner: false,
       initialRoute: NavigationRoute.mainRoute.name,
       routes: {
         NavigationRoute.mainRoute.name: (context) => const NavigationScreen(),

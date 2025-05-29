@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app/provider/home/restaurant_list_provider.dart';
+import 'package:restaurant_app/screen/home/greetings_widget.dart';
 import 'package:restaurant_app/screen/home/restaurant_card_widget.dart';
+import 'package:restaurant_app/screen/home/switch_widget.dart';
+import 'package:restaurant_app/static/navigation_route.dart';
 import 'package:restaurant_app/static/restaurant_list_result_state.dart';
-
-import '../../static/navigation_route.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -27,14 +28,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold (
       appBar: AppBar(
         centerTitle: true,
         leading: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Image.asset('assets/images/ic_launcher.png',
-            fit: BoxFit.contain,
-          ),
+          padding: const EdgeInsets.only(left: 28),
+          child: SwitchWidget(),
         ),
         title: const Text(
             'Taste Voyage',
@@ -68,20 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemCount: restaurantList.length + 1,
                 itemBuilder: (context, index) {
                   if(index == 0) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Hi, Welcome Back!",
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        Text(
-                          "Find your perfect restaurant for eat today!",
-                          style: Theme.of(context).textTheme.labelMedium,
-                        ),
-                        const SizedBox(height: 12,),
-                      ],
-                    );
+                    return const GreetingsWidget();
                   }
                   final restaurant = restaurantList[index - 1];
 
