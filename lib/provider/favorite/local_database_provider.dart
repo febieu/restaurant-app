@@ -106,5 +106,7 @@ class LocalDatabaseProvider extends ChangeNotifier {
       await saveRestaurantValue(value);
       notifyListeners();
     }
+    await loadAllRestaurantValue();
+    notifyListeners();
   }
 }
