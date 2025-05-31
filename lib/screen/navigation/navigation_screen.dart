@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:restaurant_app/provider/navigation/navigation_provider.dart';
 import 'package:restaurant_app/screen/favorite/favorite_screen.dart';
 import 'package:restaurant_app/screen/home/home_screen.dart';
+import 'package:restaurant_app/screen/setting/setting_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
   const NavigationScreen({super.key});
@@ -16,6 +17,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
   final List<Widget> _screens = [
     HomeScreen(),
     FavoriteScreen(),
+    SettingScreen(),
   ];
 
   @override
@@ -44,6 +46,11 @@ class _NavigationScreenState extends State<NavigationScreen> {
             selectedIcon: Icon(Icons.favorite),
             icon: Icon(Icons.favorite_border_outlined),
             label: 'Favorite',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.settings),
+            icon: Icon(Icons.settings_outlined),
+            label: 'Setting',
           ),
         ],
       ),

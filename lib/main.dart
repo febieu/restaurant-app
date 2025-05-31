@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/provider/detail/restaurant_detail_provider.dart';
 import 'package:restaurant_app/provider/favorite/local_database_provider.dart';
 import 'package:restaurant_app/provider/home/restaurant_list_provider.dart';
 import 'package:restaurant_app/provider/navigation/navigation_provider.dart';
+import 'package:restaurant_app/provider/notification/notification_provider.dart';
 import 'package:restaurant_app/provider/search/restaurant_search_provider.dart';
 import 'package:restaurant_app/provider/theme/theme_provider.dart';
 import 'package:restaurant_app/screen/detail/detail_screen.dart';
@@ -12,11 +14,30 @@ import 'package:restaurant_app/screen/favorite/favorite_screen.dart';
 import 'package:restaurant_app/screen/home/home_screen.dart';
 import 'package:restaurant_app/screen/navigation/navigation_screen.dart';
 import 'package:restaurant_app/screen/search/search_screen.dart';
-import 'package:restaurant_app/services/sqlite_service.dart';
+import 'package:restaurant_app/services/favorite/sqlite_service.dart';
+import 'package:restaurant_app/services/notification/local_notification_service.dart';
 import 'package:restaurant_app/static/navigation_route.dart';
 import 'package:restaurant_app/style/theme/restaurant_theme.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final notificationService = LocalNotificationService();
+  await notificationService.init();
+  await notificationService.configureLocalTimeZone();
+  await notificationService.requestPermissions();
+
+  const AndroidNotificationChannel channel = AndroidNotificationChannel(
+    '1',
+    'Lunch Reminder',
+    description: 'Daily lunch reminder at 11AM',
+    importance: Importance.max,
+  );
+
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(channel);
+
   runApp(
     MultiProvider(
         providers: [
@@ -25,6 +46,9 @@ void main() {
           ),
           Provider(
             create: (context) => ApiServices(),
+          ),
+          Provider(
+            create: (context) => notificationService
           ),
           ChangeNotifierProvider(
               create: (context) => RestaurantListProvider(
@@ -51,7 +75,10 @@ void main() {
           ),
           ChangeNotifierProvider(
             create: (context) => ThemeProvider(),
-          )
+          ),
+          ChangeNotifierProvider(
+              create: (_) => NotificationProvider(notificationService)
+          ),
         ],
         child: const MyApp()
     ),

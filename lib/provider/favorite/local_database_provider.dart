@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:restaurant_app/data/model/restaurant_list.dart';
-import 'package:restaurant_app/services/sqlite_service.dart';
+import 'package:restaurant_app/services/favorite/sqlite_service.dart';
 
 class LocalDatabaseProvider extends ChangeNotifier {
   final SqliteService _service;
