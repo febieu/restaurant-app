@@ -49,17 +49,12 @@ class LocalNotificationService {
   tz.TZDateTime _nextInstanceOfElevenAM() {
     final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
     tz.TZDateTime scheduleDate =
-        tz.TZDateTime(tz.local, now.year, now.month, now.day, now.hour, now.minute + 1);
+        tz.TZDateTime(tz.local, now.year, now.month, now.day, 11, 00);
     if (scheduleDate.isBefore(now)) {
       scheduleDate = scheduleDate.add(const Duration(days: 1));
     }
     return scheduleDate;
   }
-
-  // tz.TZDateTime _scheduleOneMinuteFromNow() {
-  //   final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
-  //   return now.add(const Duration(seconds: 10));
-  // }
 
   Future<bool> _requestExactAlarmsPermission() async {
     return await flutterLocalNotificationsPlugin
@@ -142,23 +137,17 @@ class LocalNotificationService {
     );
 
     final datetimeSchedule = _nextInstanceOfElevenAM();
-    print("Next schedule will be at: $datetimeSchedule");
 
-    try {
-      await flutterLocalNotificationsPlugin.zonedSchedule(
-        id,
-        '🔔 Lunch Time! 🔔',
-        'Browse top restaurants and grab your favorite meal now 🍽️',
-        datetimeSchedule,
-        notificationDetails,
-        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-        matchDateTimeComponents: DateTimeComponents.time,
-        payload: "lunch_reminder",
-      );
-      print("✅ Scheduled notification at: $datetimeSchedule");
-    } catch (e) {
-      print("❌ Error scheduling notification: $e");
-    }
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+      id,
+      '🔔 Lunch Time! 🔔',
+      'Browse top restaurants and grab your favorite meal now 🍽️',
+      datetimeSchedule,
+      notificationDetails,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      matchDateTimeComponents: DateTimeComponents.time,
+      payload: "lunch_reminder",
+    );
 
   }
 

@@ -38,19 +38,11 @@ class SettingScreen extends StatelessWidget {
                     activeColor: Colors.orange,
                     onChanged: (bool value) {
                       provider.toggleDailyReminder(value);
-                      print(value);
                     },
                   ),
                 ),
               ],
             ),
-            // SizedBox(height: 12),
-            // FilledButton(
-            //     onPressed: () {
-            //       provider.showNotification();
-            //     },
-            //     child: Text("Test Reminder")
-            // )
           ],
         ),
       ),

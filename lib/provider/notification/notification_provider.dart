@@ -36,12 +36,5 @@ class NotificationProvider extends ChangeNotifier {
     } else {
       await _localNotificationService.cancelNotification(1);
     }
-    // print('toggleDailyReminder called with value: $isEnabled');
   }
-
-  // void showNotification() {
-  //   _localNotificationService.scheduleDailyElevenAMNotification(
-  //       id: 1
-  //   );
-  // }
 }
