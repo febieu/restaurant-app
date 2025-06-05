@@ -9,16 +9,16 @@ import 'package:restaurant_app/static/restaurant_list_result_state.dart';
 class MockApiService extends Mock implements ApiServices {}
 
 void main() {
-  late RestaurantListProvider provider;
+  late RestaurantListProvider restaurantListProvider;
   late MockApiService mockApiService;
 
   setUp(() {
     mockApiService = MockApiService();
-    provider = RestaurantListProvider(mockApiService);
+    restaurantListProvider = RestaurantListProvider(mockApiService);
   });
 
   test('return RestaurantListNoneState as the initial state', () {
-    expect(provider.resultState, isA<RestaurantListNoneState>());
+    expect(restaurantListProvider.resultState, isA<RestaurantListNoneState>());
   });
 
   test('returns restaurant list when API call is successful', () async {
@@ -42,11 +42,11 @@ void main() {
     when(() => mockApiService.getRestaurantList())
         .thenAnswer((_) async => mockResult);
 
-    await provider.fetchRestaurantList();
+    await restaurantListProvider.fetchRestaurantList();
 
-    expect(provider.resultState, isA<RestaurantListLoadedState>());
+    expect(restaurantListProvider.resultState, isA<RestaurantListLoadedState>());
 
-    final state = provider.resultState as RestaurantListLoadedState;
+    final state = restaurantListProvider.resultState as RestaurantListLoadedState;
 
     expect(state.data, isNotEmpty);
     expect(state.data.first.name, equals('Seventeen Resto'));
@@ -63,11 +63,11 @@ void main() {
     when(() => mockApiService.getRestaurantList())
         .thenAnswer((_) async => mockResult);
 
-    await provider.fetchRestaurantList();
+    await restaurantListProvider.fetchRestaurantList();
 
-    expect(provider.resultState, isA<RestaurantListErrorState>());
+    expect(restaurantListProvider.resultState, isA<RestaurantListErrorState>());
 
-    final errorState = provider.resultState as RestaurantListErrorState;
+    final errorState = restaurantListProvider.resultState as RestaurantListErrorState;
 
     expect(errorState.error, contains('Failed'));
   });
